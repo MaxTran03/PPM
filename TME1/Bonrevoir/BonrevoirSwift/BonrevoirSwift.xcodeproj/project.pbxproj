@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D68943671D995D2B00A707E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68943661D995D2B00A707E9 /* AppDelegate.swift */; };
+		D68943691D995D2B00A707E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68943681D995D2B00A707E9 /* ViewController.swift */; };
+		D689436C1D995D2B00A707E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D689436A1D995D2B00A707E9 /* Main.storyboard */; };
+		D689436E1D995D2B00A707E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D689436D1D995D2B00A707E9 /* Assets.xcassets */; };
+		D68943711D995D2B00A707E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D689436F1D995D2B00A707E9 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D68943631D995D2B00A707E9 /* BonrevoirSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonrevoirSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68943661D995D2B00A707E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D68943681D995D2B00A707E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D689436B1D995D2B00A707E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D689436D1D995D2B00A707E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D68943701D995D2B00A707E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D68943721D995D2B00A707E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D68943601D995D2B00A707E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D689435A1D995D2B00A707E9 = {
+			isa = PBXGroup;
+			children = (
+				D68943651D995D2B00A707E9 /* BonrevoirSwift */,
+				D68943641D995D2B00A707E9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D68943641D995D2B00A707E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D68943631D995D2B00A707E9 /* BonrevoirSwift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D68943651D995D2B00A707E9 /* BonrevoirSwift */ = {
+			isa = PBXGroup;
+			children = (
+				D68943661D995D2B00A707E9 /* AppDelegate.swift */,
+				D68943681D995D2B00A707E9 /* ViewController.swift */,
+				D689436A1D995D2B00A707E9 /* Main.storyboard */,
+				D689436D1D995D2B00A707E9 /* Assets.xcassets */,
+				D689436F1D995D2B00A707E9 /* LaunchScreen.storyboard */,
+				D68943721D995D2B00A707E9 /* Info.plist */,
+			);
+			path = BonrevoirSwift;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D68943621D995D2B00A707E9 /* BonrevoirSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D68943751D995D2B00A707E9 /* Build configuration list for PBXNativeTarget "BonrevoirSwift" */;
+			buildPhases = (
+				D689435F1D995D2B00A707E9 /* Sources */,
+				D68943601D995D2B00A707E9 /* Frameworks */,
+				D68943611D995D2B00A707E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BonrevoirSwift;
+			productName = BonrevoirSwift;
+			productReference = D68943631D995D2B00A707E9 /* BonrevoirSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D689435B1D995D2B00A707E9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = UPMC;
+				TargetAttributes = {
+					D68943621D995D2B00A707E9 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = L99GSY552M;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D689435E1D995D2B00A707E9 /* Build configuration list for PBXProject "BonrevoirSwift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D689435A1D995D2B00A707E9;
+			productRefGroup = D68943641D995D2B00A707E9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D68943621D995D2B00A707E9 /* BonrevoirSwift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D68943611D995D2B00A707E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68943711D995D2B00A707E9 /* LaunchScreen.storyboard in Resources */,
+				D689436E1D995D2B00A707E9 /* Assets.xcassets in Resources */,
+				D689436C1D995D2B00A707E9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D689435F1D995D2B00A707E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68943691D995D2B00A707E9 /* ViewController.swift in Sources */,
+				D68943671D995D2B00A707E9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D689436A1D995D2B00A707E9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D689436B1D995D2B00A707E9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D689436F1D995D2B00A707E9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D68943701D995D2B00A707E9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D68943731D995D2B00A707E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D68943741D995D2B00A707E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D68943761D995D2B00A707E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L99GSY552M;
+				INFOPLIST_FILE = BonrevoirSwift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.upmc.sar.BonrevoirSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D68943771D995D2B00A707E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L99GSY552M;
+				INFOPLIST_FILE = BonrevoirSwift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.upmc.sar.BonrevoirSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D689435E1D995D2B00A707E9 /* Build configuration list for PBXProject "BonrevoirSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68943731D995D2B00A707E9 /* Debug */,
+				D68943741D995D2B00A707E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D68943751D995D2B00A707E9 /* Build configuration list for PBXNativeTarget "BonrevoirSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68943761D995D2B00A707E9 /* Debug */,
+				D68943771D995D2B00A707E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D689435B1D995D2B00A707E9 /* Project object */;
+}

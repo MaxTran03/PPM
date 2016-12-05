@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BonrevoirSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eoJ-uV-zI5">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="8RD-GL-8rI"/>
+                                    <constraint firstAttribute="height" constant="21" id="Z8m-k2-mAu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8RD-GL-8rI"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="8RD-GL-8rI"/>
+                                        <exclude reference="Z8m-k2-mAu"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PE1-w6-gDD">
+                                <state key="normal" title="Dis Bonjour"/>
+                                <connections>
+                                    <action selector="buttonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ynf-Om-3Td"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="eoJ-uV-zI5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="126" id="9kG-mZ-t9Q"/>
+                            <constraint firstItem="PE1-w6-gDD" firstAttribute="top" secondItem="eoJ-uV-zI5" secondAttribute="bottom" constant="74" id="AR3-ja-4iU"/>
+                            <constraint firstItem="PE1-w6-gDD" firstAttribute="top" secondItem="eoJ-uV-zI5" secondAttribute="bottom" constant="74" id="BWq-2T-fby"/>
+                            <constraint firstItem="eoJ-uV-zI5" firstAttribute="centerX" secondItem="PE1-w6-gDD" secondAttribute="centerX" id="Dxt-5F-kIS"/>
+                            <constraint firstItem="eoJ-uV-zI5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="41" id="Ldx-ed-r7k"/>
+                            <constraint firstItem="eoJ-uV-zI5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="67" id="LhW-tp-oah"/>
+                            <constraint firstItem="PE1-w6-gDD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="84" id="PaV-Xb-ph4"/>
+                            <constraint firstItem="PE1-w6-gDD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="84" id="bsA-zT-mjX"/>
+                            <constraint firstItem="eoJ-uV-zI5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cSu-n8-fp9"/>
+                            <constraint firstItem="eoJ-uV-zI5" firstAttribute="centerX" secondItem="PE1-w6-gDD" secondAttribute="centerX" id="d9b-UN-Nwt"/>
+                            <constraint firstItem="eoJ-uV-zI5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eDR-9C-pdV"/>
+                            <constraint firstItem="eoJ-uV-zI5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="67" id="w4w-GQ-SYJ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BWq-2T-fby"/>
+                                <exclude reference="PaV-Xb-ph4"/>
+                                <exclude reference="Dxt-5F-kIS"/>
+                                <exclude reference="Ldx-ed-r7k"/>
+                                <exclude reference="eDR-9C-pdV"/>
+                                <exclude reference="w4w-GQ-SYJ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="AR3-ja-4iU"/>
+                                <include reference="BWq-2T-fby"/>
+                                <include reference="PaV-Xb-ph4"/>
+                                <exclude reference="bsA-zT-mjX"/>
+                                <exclude reference="9kG-mZ-t9Q"/>
+                                <include reference="Dxt-5F-kIS"/>
+                                <include reference="Ldx-ed-r7k"/>
+                                <exclude reference="LhW-tp-oah"/>
+                                <exclude reference="cSu-n8-fp9"/>
+                                <exclude reference="d9b-UN-Nwt"/>
+                                <include reference="eDR-9C-pdV"/>
+                                <include reference="w4w-GQ-SYJ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="LabAffiche" destination="eoJ-uV-zI5" id="PVO-M2-GtD"/>
+                        <outlet property="myButton" destination="PE1-w6-gDD" id="fjT-lP-ERu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+        </scene>
+    </scenes>
+</document>
