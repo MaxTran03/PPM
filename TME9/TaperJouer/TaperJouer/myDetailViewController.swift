@@ -14,7 +14,7 @@ protocol myDetailViewControllerDelegate: class {
     func addSongToHistoric(song: MPMediaItem)
 }
 
-class myDetailViewController : ViewController, UINavigationControllerDelegate, UIGestureRecognizerDelegate, MPMediaPickerControllerDelegate{
+class myDetailViewController : ViewController, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIAdaptivePresentationControllerDelegate, UIPopoverPresentationControllerDelegate{
     
     var statusLabel = UILabel()
     var songLabel = UILabel()
@@ -22,7 +22,6 @@ class myDetailViewController : ViewController, UINavigationControllerDelegate, U
     var indexOfSongLabel = UILabel()
     
     var mediaPlayer = MPMusicPlayerController()
-    var mediaPicker = MPMediaPickerController()
     
     var nextSongOnSwipeLeft = UISwipeGestureRecognizer()
     var prevSongOnSwipeRight = UISwipeGestureRecognizer()
@@ -32,14 +31,28 @@ class myDetailViewController : ViewController, UINavigationControllerDelegate, U
     var songsArray = [MPMediaItem]()
     var mediaQuery = MPMediaQuery()
     
-    var notificationCenter = NotificationCenter()
+    let popover = UIViewController()
+    let infoButton = UIButton(type: UIButtonType.infoLight)
+    
+    var masterVC : myMasterViewController?
+    
+    var isBeginning = true
+    var isNext = true
     
     weak var delegate : myDetailViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        masterVC = myMasterViewController()
+        
         self.navigationItem.title = "Music"
+        
+        infoButton.addTarget(self, action: #selector(infoWindow), for: .touchDown)
+        let infoBarButtonItem = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.rightBarButtonItem = infoBarButtonItem
+        
+        
         
         statusLabel.text = "Stopped"
         statusLabel.textAlignment = .center
@@ -49,11 +62,12 @@ class myDetailViewController : ViewController, UINavigationControllerDelegate, U
         
         songProgress.progress = 0
         
+        Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateSongProgress), userInfo: nil, repeats: true)
+        
         indexOfSongLabel.text = "0/0"
         indexOfSongLabel.textAlignment = .center
         
         mediaPlayer = MPMusicPlayerController.applicationMusicPlayer()
-        mediaPicker.delegate = self
         
         nextSongOnSwipeLeft.direction = UISwipeGestureRecognizerDirection.left
         nextSongOnSwipeLeft.addTarget(self, action: #selector(nextSong))
@@ -71,10 +85,16 @@ class myDetailViewController : ViewController, UINavigationControllerDelegate, U
         playSongOnSingleTap.addTarget(self, action: #selector(playSong))
         self.view.addGestureRecognizer(playSongOnSingleTap)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateLabel), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(songDidChange), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: self.mediaPlayer)
+        
+        notificationCenter.addObserver(self, selector: #selector(playbackStateDidChange), name: .MPMusicPlayerControllerPlaybackStateDidChange, object: self.mediaPlayer)
+        
+        mediaPlayer.beginGeneratingPlaybackNotifications()
         
         mediaPlayer.setQueue(with: mediaQuery)
         
+        self.view.backgroundColor = UIColor.white
         self.drawSize(size: self.view.frame.size)
         
         self.view.addSubview(statusLabel)
@@ -91,77 +111,166 @@ class myDetailViewController : ViewController, UINavigationControllerDelegate, U
         self.view.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
         if((UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone) && (size.height < size.width) && (UIScreen.main.scale != 3.0)){
-            self.statusLabel.frame = CGRect(x: size.width * 40/100, y: size.height * 10/100, width: size.width * 20/100, height: size.height * 4/100)
+            self.statusLabel.frame = CGRect(x: size.width * 40/100, y: size.height * 10/100, width: size.width * 30/100, height: size.height * 4/100)
         
             self.songLabel.frame = CGRect(x: size.width * 25/100, y: size.height * 20/100, width: size.width * 50/100, height: size.height * 4/100)
         
             self.songProgress.frame = CGRect(x: size.width * 10/100, y: size.height * 30/100, width: size.width * 80/100, height: size.height * 5/100)
         
-            self.indexOfSongLabel.frame = CGRect(x: size.width * 45/100, y: size.height * 35/100, width: size.width * 10/100, height: size.height * 4/100)
+            self.indexOfSongLabel.frame = CGRect(x: size.width * 40/100, y: size.height * 35/100, width: size.width * 20/100, height: size.height * 4/100)
         }else{
-            self.statusLabel.frame = CGRect(x: size.width * 40/100, y: size.height * 10/100, width: size.width * 20/100, height: size.height * 4/100)
-            //self.statusLabel.backgroundColor = UIColor.white
+            self.statusLabel.frame = CGRect(x: size.width * 40/100, y: size.height * 10/100, width: size.width * 20/100, height: size.height * 5/100)
             
             self.songLabel.frame = CGRect(x: size.width * 25/100, y: size.height * 20/100, width: size.width * 50/100, height: size.height * 4/100)
-            //self.songLabel.backgroundColor = UIColor.white
             
             self.songProgress.frame = CGRect(x: size.width * 10/100, y: size.height * 30/100, width: size.width * 80/100, height: size.height * 5/100)
             
-            self.indexOfSongLabel.frame = CGRect(x: size.width * 45/100, y: size.height * 35/100, width: size.width * 10/100, height: size.height * 4/100)
+            self.indexOfSongLabel.frame = CGRect(x: size.width * 40/100, y: size.height * 35/100, width: size.width * 20/100, height: size.height * 4/100)
         }
-    }
-    
-    /****** Protocole MPMediaPickerControllerDelegate ******/
-    func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
-        mediaPicker.dismiss(animated: true, completion: nil)
-        mediaPlayer.setQueue(with: mediaItemCollection)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateLabel), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
-        mediaPlayer.play()
-        mediaPlayer.beginGeneratingPlaybackNotifications()
-    }
-    
-    func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
-        mediaPicker.dismiss(animated: true, completion: nil)
-        mediaPlayer.stop()
     }
     
     /****** Functions ******/
     
     func nextSong(){
-        songLabel.text = "\(mediaPlayer.nowPlayingItem?.artist) - \(mediaPlayer.nowPlayingItem?.title)"
-        indexOfSongLabel.text = "\(mediaPlayer.indexOfNowPlayingItem)/\(mediaQuery.items?.count)"
-        mediaPlayer.skipToNextItem()
-        if(mediaPlayer.nowPlayingItem != nil){
-            self.delegate?.addSongToHistoric(song: mediaPlayer.nowPlayingItem!)
+        statusLabel.text = "Next"
+        mediaPlayer.prepareToPlay()
+        updateCurrentIndexSong()
+        if((mediaPlayer.indexOfNowPlayingItem + 1) != mediaQuery.items?.count){
+            mediaPlayer.skipToNextItem()
         }
+        isNext = true
+        
     }
     
     func prevSong(){
-        songLabel.text = "\(mediaPlayer.nowPlayingItem?.artist) - \(mediaPlayer.nowPlayingItem?.title)"
-        indexOfSongLabel.text = "\(mediaPlayer.indexOfNowPlayingItem)/\(mediaQuery.items?.count)"
-        mediaPlayer.skipToPreviousItem()
+        statusLabel.text = "Previous"
+        if(mediaPlayer.isPreparedToPlay==false){
+            mediaPlayer.prepareToPlay()
+        }else{
+            updateCurrentIndexSong()
+        }
+        if(mediaPlayer.indexOfNowPlayingItem != 0){
+            mediaPlayer.skipToPreviousItem()
+        }
+        
+    }
+    
+    func stopSong(){
+        statusLabel.text = "Paused"
+        mediaPlayer.pause()
+    }
+    
+    func playSong(){
+        statusLabel.text = "Playing"
+        mediaPlayer.play()
+    }
+    
+    func songDidChange(){
+        var artistName = String()
+        if let artist = mediaPlayer.nowPlayingItem?.artist{
+            artistName = "\(artist) - "
+        }else{
+            artistName = ""
+        }
+        if let title = mediaPlayer.nowPlayingItem?.title{
+            songLabel.text = "\(artistName)\(title)"
+        }
+        
+        updateCurrentIndexSong()
+
         if(mediaPlayer.nowPlayingItem != nil){
             self.delegate?.addSongToHistoric(song: mediaPlayer.nowPlayingItem!)
         }
     }
     
-    func stopSong(){
-        statusLabel.text = "Stopped"
-        mediaPlayer.stop()
+    func playbackStateDidChange(){
+        var artistName = String()
+        if let artist = mediaPlayer.nowPlayingItem?.artist{
+            artistName = "\(artist) - "
+        }else{
+            artistName = ""
+        }
+        
+        if let title = mediaPlayer.nowPlayingItem?.title{
+            songLabel.text = "\(artistName)\(title)"
+        }
+        
+        if(mediaPlayer.playbackState == .playing){
+            statusLabel.text = "Playing"
+        }
+        if(mediaPlayer.playbackState == .stopped){
+            statusLabel.text = "Stopped"
+        }
+        if(mediaPlayer.playbackState == .paused){
+            statusLabel.text = "Paused"
+        }
+        
+        updateCurrentIndexSong()
+        /*if((UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone)){
+            if(mediaPlayer.nowPlayingItem != nil){
+                //masterVC.addSong(song: mediaPlayer.nowPlayingItem!)
+                masterVC.addSongToHistoric(song: mediaPlayer.nowPlayingItem!)
+            }
+        }else{
+            if(mediaPlayer.nowPlayingItem != nil){
+                self.delegate?.addSongToHistoric(song: mediaPlayer.nowPlayingItem!)
+            }
+        }*/
+        
+        if(mediaPlayer.nowPlayingItem != nil){
+            self.delegate?.addSongToHistoric(song: mediaPlayer.nowPlayingItem!)
+        }
     }
     
-    func playSong(){
-        statusLabel.text = "Listening"
-        mediaPlayer.play()
+    func updateCurrentIndexSong(){
+        if let totalNumberOfSongs = mediaQuery.items?.count{
+            if mediaPlayer.indexOfNowPlayingItem != -1 && isBeginning == true{
+                indexOfSongLabel.text = "0/\(totalNumberOfSongs)"
+                isBeginning = false
+            }
+           else if isBeginning == false && totalNumberOfSongs != 0{
+                indexOfSongLabel.text = "\(mediaPlayer.indexOfNowPlayingItem + 1)/\(totalNumberOfSongs)"
+            }
+            
+        }
     }
     
-    func updateLabel(){
-        songLabel.text = "\(mediaPlayer.nowPlayingItem?.artist) - \(mediaPlayer.nowPlayingItem?.title)"
+    func updateSongProgress(){
+        if mediaPlayer.playbackState == .playing{
+           // songProgress.progress = Float(mediaPlayer.currentPlaybackTime/(mediaPlayer.nowPlayingItem?.playbackDuration)!)
+        }
+    }
+    
+    func infoWindow(){
+        let infoMessage : UITextView = {
+            let message = UITextView()
+            message.text = "Play: 1 tap\nStop: 2 tap\nNext: Swipe on left\nPrevious: Swipe on right"
+            message.frame = CGRect(x: popover.view.frame.origin.x, y: popover.view.frame.origin.y, width: popover.view.bounds.size.width, height: popover.view.frame.size.height)
+            message.font = UIFont.systemFont(ofSize: 20)
+            message.isEditable = false
+            return message
+        }()
+        popover.view.addSubview(infoMessage)
+        popover.modalPresentationStyle = .popover
+        if let presentation = popover.popoverPresentationController{
+            presentation.barButtonItem = self.navigationItem.rightBarButtonItem
+            presentation.delegate = self
+        }
+        popover.preferredContentSize = CGSize(width: self.view.frame.size.width * 30/100, height: self.view.frame.size.height * 20/100)
+        
+        self.present(popover, animated: true, completion: nil)
+    }
+    
+    /****** Protocol UIAdaptivePresentationControllerDelegate ******/
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 }
 
+
+
 extension myDetailViewController : myMasterViewControllerDelegate{
     func replaySong(song: MPMediaItem) {
-        
+        mediaPlayer.nowPlayingItem = song
     }
 }

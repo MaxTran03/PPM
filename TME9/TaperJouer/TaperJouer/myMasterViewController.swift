@@ -93,4 +93,13 @@ class myMasterViewController : UITableViewController, UISplitViewControllerDeleg
         }
         self.tableView.reloadData()
     }
+    
+    /****** Functions ******/
+    func addSong(song: MPMediaItem){
+        let songToAdd = song
+        if(!historicMusicTable.contains(songToAdd)){
+            self.historicMusicTable.append(songToAdd)
+        }
+        self.tableView.reloadData()
+    }
 }

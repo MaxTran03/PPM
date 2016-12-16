@@ -32,15 +32,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if((UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone)){
             sVC.preferredDisplayMode = .automatic
+            
+            /*let masterNavigationController = UINavigationController()
+            masterNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
+            masterNavigationController.viewControllers = [myMasterViewController()]*/
+            
+            mnVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
+            
+            /*let detailNavigationController = UINavigationController()
+            detailNavigationController.tabBarItem.image = UIImage(named: "tete-a-toto")
+            detailNavigationController.tabBarItem.title = "Music"
+            detailNavigationController.viewControllers = [myDetailViewController()]*/
+            
+            dnVC.tabBarItem.image = UIImage(named: "tete-a-toto")
+            dnVC.tabBarItem.title = "Music"
+            
+            let tabBarController = UITabBarController()
+            tabBarController.viewControllers = [dnVC, mnVC]
+            
+            window?.rootViewController = tabBarController
         }else{
             sVC.preferredDisplayMode = .automatic
             if(UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height){
                 dnVC.topViewController?.navigationItem.setLeftBarButton(sVC.displayModeButtonItem, animated: true)
                 dnVC.topViewController?.navigationItem.leftItemsSupplementBackButton = true
             }
+            window?.rootViewController = sVC
         }
         
-        window?.rootViewController = sVC
         window?.makeKeyAndVisible()
         
         
